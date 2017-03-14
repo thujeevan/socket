@@ -1,0 +1,24 @@
+{
+  "name": "sock",
+  "version": "1.0.0",
+  "description": "simple pubsub",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thujeevan/sock.git"
+  },
+  "author": "thujeevan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thujeevan/sock/issues"
+  },
+  "homepage": "https://github.com/thujeevan/sock#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}

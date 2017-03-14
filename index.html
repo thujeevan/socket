@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+        <style>
+            body {
+                padding-top: 50px;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="row">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="1 message" id="m">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Clients <span class="badge" id="count"></span></div>
+                    <div class="panel-heading">Messages</div>
+                    <ul class="list-group" id="messages"></ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+            socket.emit('join', 'browser');
+            $('form').submit(function () {
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function (msg) {
+                $('#messages').append($('<li>', {class: "list-group-item"}).text(msg));
+            });
+            socket.on('joined', function (count) {
+                $('#count').text(count);
+            });
+        });
+    </script>
+</body>
+
+</html>
